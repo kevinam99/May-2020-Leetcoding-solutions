@@ -1,14 +1,14 @@
-# can't use set since:
-#   1. it is not iterable
-#   2. it doesn't sort the in the original order
+# Solution using Counter
+from collections import Counter
 
-from collections import OrderedDict as od
-# So use Ordered dict
-def firstUniqChar(self, s: str) -> int:
-        unique = od((x,"") for x in s)
+
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        unique = Counter(s)
+        for index, char in enumerate(s):
+            if unique[char] == 1:
+                return index
+                break
         
-        for key, value in unique.items():
-            print(key)
-
-s = 'loveleetcode'
-firstUniqChar(s)
+        return -1
+        
